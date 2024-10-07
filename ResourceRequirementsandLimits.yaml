@@ -1,0 +1,50 @@
+#This file consist set of codes corresponding to the explenation
+#Can't use file directly for resource creation 
+
+# Resource Requests
+resources:
+  requests:
+    memory: "4Gi"
+    cpu: "2"
+
+
+
+#Resource Limits
+resources:
+  limits:
+    memory: "512Mi"
+    cpu: "1"
+
+
+
+#Setting Default Values
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: cpu-limit-range
+spec:
+  limits:
+  - default:
+      cpu: "500m"
+    defaultRequest:
+      cpu: "500m"
+    max:
+      cpu: "1"
+    min:
+      cpu: "100m"
+
+
+#Resource Quotas
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: example-quota
+spec:
+  hard:
+    requests.cpu: "4"
+    requests.memory: "4Gi"
+    limits.cpu: "10"
+    limits.memory: "10Gi"
+
+
+
