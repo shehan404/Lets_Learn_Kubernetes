@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-container-pod
+spec:
+  initContainers:
+  - name: init-container
+    image: busybox
+    command: ['sh', '-c', 'echo "Preparing the environment..."']
+  containers:
+  - name: main-app
+    image: my-app-image
